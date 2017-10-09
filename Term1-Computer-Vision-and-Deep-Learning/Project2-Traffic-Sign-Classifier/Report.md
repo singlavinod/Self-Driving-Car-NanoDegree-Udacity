@@ -11,7 +11,7 @@ The goals of this project are the following:
 
 [//]: # (Image References)
 
-[image1]: ./report_images/2.1.jpg "Training Dataset: count vs class"
+[image1]: https://github.com/vsingla2/Self-Driving-Car-NanoDegree-Udacity/edit/master/Term1-Computer-Vision-and-Deep-Learning/Project2-Traffic-Sign-Classifier/report_images/2.1.jpg "Training Dataset: count vs class"
 [image2]: ./report_images/2.2.jpg "Testing Dataset: count vs class"
 [image3]: ./report_images/2.3.jpg "Validation Dataset: count vs class"
 [image4]: ./examples/placeholder.png "Traffic Sign 1"
