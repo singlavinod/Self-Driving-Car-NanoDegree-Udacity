@@ -67,42 +67,25 @@ Below is an image showing distribution of images after the training dataset is a
 
 ![alt text][image5]
 
-As a first step, I decided to convert the images to grayscale because ...
-
-Here is an example of a traffic sign image before and after grayscaling.
-
-![alt text][image1]
-
-As a last step, I normalized the image data because ...
-
-I decided to generate additional data because ... 
-
-To add more data to the the data set, I used the following techniques because ... 
-
-Here is an example of an original image and an augmented image:
-
-![alt text][image3]
-
-The difference between the original data set and the augmented data set is the following ... 
-
+The augmented data set has: 46480 images in total and a minimum of 800 images per class. The number of images per class (800) was chosen by trial and error.
 
 #### 2. Describe what your final model architecture looks like including model type, layers, layer sizes, connectivity, etc.) Consider including a diagram and/or table describing the final model.
 
-My final model consisted of the following layers:
+The final model was a slightly modified version of the LeNet architecture and consisted of the following layers:
 
 | Layer         		|     Description	        					| 
 |:---------------------:|:---------------------------------------------:| 
-| Input         		| 32x32x3 RGB image   							| 
-| Convolution 3x3     	| 1x1 stride, same padding, outputs 32x32x64 	|
+| Input         		| 32x32x1 grayscaled, normalized image   							| 
+| Convolution 3x3     	| 1x1 stride, valid padding, outputs 28x28x6 	|
 | RELU					|												|
-| Max pooling	      	| 2x2 stride,  outputs 16x16x64 				|
+| Max pooling	      	| 2x2 stride,  outputs 14x14x6 				|
 | Convolution 3x3	    | etc.      									|
 | Fully connected		| etc.        									|
 | Softmax				| etc.        									|
 |						|												|
 |						|												|
  
-
+The decision to select LeNet as a base structure was made because performance of LeNet for classifying characters is well documented. As traffic signs are also made of simple shapes like characters, one can reasonably assume that LeNet would give satisfactory performance. 
 
 #### 3. Describe how you trained your model. The discussion can include the type of optimizer, the batch size, number of epochs and any hyperparameters such as learning rate.
 
