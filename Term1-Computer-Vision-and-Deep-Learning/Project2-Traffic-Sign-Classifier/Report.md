@@ -13,11 +13,11 @@ The goals of this project are the following:
 [image1]: ./report_images/2_1.png "Training Dataset Visualization"
 [image2]: ./report_images/2_2.png "Testing Dataset Visualization"
 [image3]: ./report_images/2_3.png "Validation Dataset Visualization"
-[image4]: ./examples/placeholder.png "Traffic Sign 1"
-[image5]: ./examples/placeholder.png "Traffic Sign 2"
-[image6]: ./examples/placeholder.png "Traffic Sign 3"
-[image7]: ./examples/placeholder.png "Traffic Sign 4"
-[image8]: ./examples/placeholder.png "Traffic Sign 5"
+[image4]: ./report_images/3_1.png "Augmented Training Data Examples"
+[image5]: ./report_images/2_3.png "Augmented Training Dataset Visualization"
+[image6]: ./report_images/2_3.png "Validation Dataset Visualization"
+[image7]: ./report_images/2_3.png "Validation Dataset Visualization"
+[image8]: ./report_images/2_3.png "Validation Dataset Visualization"
 
 ## Rubric Points
 ### Here I will consider the [rubric points](https://review.udacity.com/#!/rubrics/481/view) individually and describe how I addressed each point in my implementation.  
@@ -61,11 +61,11 @@ As can be seen from the visualization of test, training and validation data; the
 
 Examples from this augmented training dataset are given in figure below.
 
-
-
+![alt text][image4]
 
 Below is an image showing distribution of images after the training dataset is augmented.
 
+![alt text][image5]
 
 As a first step, I decided to convert the images to grayscale because ...
 
