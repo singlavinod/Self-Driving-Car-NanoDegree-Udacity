@@ -153,7 +153,7 @@ The model was able to correctly guess 3 of the 5 traffic signs, which gives an a
 
 The code for making predictions on my final model is located in the 17th cell of the Ipython notebook.
 
-For the first image, the model is relatively sure that this is speed limit 30km/h (probability of 0.99999), and the image does contain speed limit 30km/h. The top five soft max probabilities were
+For the first image, the model is sure that this is speed limit 30km/h sign (probability of 0.999999), and the image does contain speed limit 30km/h sign. The top five soft max probabilities were
 
 | Probability         	|     Prediction	        					| 
 |:---------------------:|:---------------------------------------------:| 
@@ -163,45 +163,45 @@ For the first image, the model is relatively sure that this is speed limit 30km/
 | 0.	      			| speed limit (80km/h)			 				|
 | 0.				    | Stop      							|
 
-For the second image, the model is relatively sure that this is Speed limit (30km/h) (probability of 0.83). However, the image contains a stop sign. The top five soft max probabilities were
+For the second image, the model is sure that this is Speed limit (20km/h) sign (probability of 0.83). However, the image contains a stop sign. The top five soft max probabilities were
 
 | Probability         	|     Prediction	        					| 
 |:---------------------:|:---------------------------------------------:| 
-| .83         			| Speed limit (30km/h) 									| 
+| .83         			| Speed limit (20km/h) 									| 
 | .16    				| Stop										|
 | .0					| Speed limit (70km/h)										|
 | .0	      			| Turn right ahead	 				|
 | .0				    | Speed limit (80km/h)     							|
 
-For the third image, the model is relatively sure that this is a stop sign (probability of 0.6), and the image does contain a stop sign. The top five soft max probabilities were
+For the third image, the model is relatively sure that this is a road work sign (probability of 0.60), and the image does contain a road work sign. The top five soft max probabilities were
 
 | Probability         	|     Prediction	        					| 
 |:---------------------:|:---------------------------------------------:| 
-| .60         			| Stop sign   									| 
-| .20     				| U-turn 										|
-| .05					| Yield											|
-| .04	      			| Bumpy Road					 				|
-| .01				    | Slippery Road      							|
+| .60         			| Road work   									| 
+| .39     				| Beware of ice/snow 										|
+| .0					| Bumpy road										|
+| .0	      			| No passing for vehicles over 3.5 metric tons				 				|
+| .0				    | Slippery road      							|
 
-For the fourth image, the model is relatively sure that this is a stop sign (probability of 0.6), and the image does contain a stop sign. The top five soft max probabilities were
-
-| Probability         	|     Prediction	        					| 
-|:---------------------:|:---------------------------------------------:| 
-| .60         			| Stop sign   									| 
-| .20     				| U-turn 										|
-| .05					| Yield											|
-| .04	      			| Bumpy Road					 				|
-| .01				    | Slippery Road      							|
-
-For the fifth image, the model is relatively sure that this is a stop sign (probability of 0.6), and the image does contain a stop sign. The top five soft max probabilities were
+For the fourth image, the model is sure that this is a speed limit (20km/h) sign (probability of 0.99999). However, the image contains a speed limit (70km/h) sign. The top five soft max probabilities were
 
 | Probability         	|     Prediction	        					| 
 |:---------------------:|:---------------------------------------------:| 
-| .60         			| Stop sign   									| 
-| .20     				| U-turn 										|
-| .05					| Yield											|
-| .04	      			| Bumpy Road					 				|
-| .01				    | Slippery Road      							|
+| .99999         			| Speed limit (20km/h)   									| 
+| .0     				| Keep left										|
+| .0					| Speed limit (30km/h)										|
+| .0	      			| Go straight or left					 				|
+| .0				    | Roundabout mandatory      							|
+
+For the fifth image, the model is sure that this is a keep right sign (probability of 1), and the image does contain a keep right sign. The top five soft max probabilities were
+
+| Probability         	|     Prediction	        					| 
+|:---------------------:|:---------------------------------------------:| 
+| 1        			| Keep right  									| 
+| 0    				| Turn left ahead 										|
+| 0					| Slippery road										|
+| 0	      			| Beware of ice/snow					 				|
+| 0				    | Double curve      							|
 
  
 
