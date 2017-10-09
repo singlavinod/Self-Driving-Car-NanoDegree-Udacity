@@ -11,7 +11,7 @@ The goals of this project are the following:
 
 [//]: # (Image References)
 
-[image1]: https://github.com/vsingla2/Self-Driving-Car-NanoDegree-Udacity/edit/master/Term1-Computer-Vision-and-Deep-Learning/Project2-Traffic-Sign-Classifier/report_images/2.1.jpg "Training Dataset: count vs class"
+[image1]: https://github.com/vsingla2/Self-Driving-Car-NanoDegree-Udacity/edit/master/Term1-Computer-Vision-and-Deep-Learning/Project2-Traffic-Sign-Classifier/report_images/2.1.png "Training Dataset: count vs class"
 [image2]: ./report_images/2.2.jpg "Testing Dataset: count vs class"
 [image3]: ./report_images/2.3.jpg "Validation Dataset: count vs class"
 [image4]: ./examples/placeholder.png "Traffic Sign 1"
@@ -46,7 +46,7 @@ I used the vanilla python commands and numpy library to calculate summary statis
 
 Below is an exploratory visualization of the data set. The bar charts depict distribution of images per class in training, testing and validation datasets. It is clear that there is a wide variation in number of images available per class in each of these datasets. Therefore, it is logical to think that data augmentation using preprocessing techniques can help reduce this disparity and thereby result in improved performance of the network.
 
-![alt text][image1]
+![Figure 1][image1]
 
 ### Design and Test a Model Architecture
 
