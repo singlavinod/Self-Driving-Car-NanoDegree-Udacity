@@ -158,7 +158,7 @@ For the first image, the model is sure that this is speed limit 30km/h sign (pro
 | Probability         	|     Prediction	        					| 
 |:---------------------:|:---------------------------------------------:| 
 | 0.999999         			| speed limit 30km/h   									| 
-| 0.     				| speed limit 30km/h									|
+| 0.     				| speed limit 20km/h									|
 | 0.					| End of speed limit (80km/h)										|
 | 0.	      			| speed limit (80km/h)			 				|
 | 0.				    | Stop      							|
