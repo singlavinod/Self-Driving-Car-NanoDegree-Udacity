@@ -141,7 +141,7 @@ Here are the results of the prediction:
 | Image			        |     Prediction	        					| 
 |:---------------------:|:---------------------------------------------:| 
 | 30 km/h      		| 30 km/h  									| 
-| Stop Sign    			| 30 km/h									|
+| Stop Sign    			| 20 km/h									|
 | Road work				| Road work											|
 | 70 km/h	      		| 20 km/h				 				|
 | Keep right			| Keep right      							|
