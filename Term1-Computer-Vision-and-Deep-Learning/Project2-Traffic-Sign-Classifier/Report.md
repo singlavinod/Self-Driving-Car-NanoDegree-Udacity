@@ -153,7 +153,7 @@ The model was able to correctly guess 3 of the 5 traffic signs, which gives an a
 
 The code for making predictions on my final model is located in the 17th cell of the Ipython notebook.
 
-For the first image, the model is relatively sure that this is speed limit 20km/h (probability of 0.99999), and the image does contain speed limit 30km/h. The top five soft max probabilities were
+For the first image, the model is relatively sure that this is speed limit 30km/h (probability of 0.99999), and the image does contain speed limit 30km/h. The top five soft max probabilities were
 
 | Probability         	|     Prediction	        					| 
 |:---------------------:|:---------------------------------------------:| 
@@ -163,15 +163,15 @@ For the first image, the model is relatively sure that this is speed limit 20km/
 | 0.	      			| speed limit (80km/h)			 				|
 | 0.				    | Stop      							|
 
-For the second image, the model is relatively sure that this is a stop sign (probability of 0.6), and the image does contain a stop sign. The top five soft max probabilities were
+For the second image, the model is relatively sure that this is Speed limit (30km/h) (probability of 0.83). However, the image contains a stop sign. The top five soft max probabilities were
 
 | Probability         	|     Prediction	        					| 
 |:---------------------:|:---------------------------------------------:| 
-| .60         			| Stop sign   									| 
-| .20     				| U-turn 										|
-| .05					| Yield											|
-| .04	      			| Bumpy Road					 				|
-| .01				    | Slippery Road      							|
+| .83         			| Speed limit (30km/h) 									| 
+| .16    				| Stop										|
+| .0					| Speed limit (70km/h)										|
+| .0	      			| Turn right ahead	 				|
+| .0				    | Speed limit (80km/h)     							|
 
 For the third image, the model is relatively sure that this is a stop sign (probability of 0.6), and the image does contain a stop sign. The top five soft max probabilities were
 
