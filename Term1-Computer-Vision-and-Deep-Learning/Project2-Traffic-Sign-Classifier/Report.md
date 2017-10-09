@@ -55,6 +55,18 @@ Below is an exploratory visualization of the data set. The bar charts depict dis
 
 #### 1. Describe how you preprocessed the image data. What techniques were chosen and why did you choose these techniques? Consider including images showing the output of each preprocessing technique. Pre-processing refers to techniques such as converting to grayscale, normalization, etc. (OPTIONAL: As described in the "Stand Out Suggestions" part of the rubric, if you generated additional data for training, describe why you decided to generate additional data, how you generated the data, and provide example images of the additional data. Then describe the characteristics of the augmented training set like number of images in the set, number of images for each class, etc.)
 
+The original training dataset was first converted to grayscale because traffic signs can be uniquely distinguished by shapes in most cases. Moreover, the reference paper uses grayscale images to achieve a respectable classification accuracy. Normalization was later applied to the dataset to achieve zero mean and equal variance. This helps the optimization algorithm converge in lesser steps thereby saving computational time.
+
+As can be seen from the visualization of test, training and validation data; the number of images per class varies greatly in each of the datasets. This means that there might be features in validation data, that are not fully encompassed in the training data. To overcome this issue, data augmentation is applied. The first step in augmentation is to make a dataset of images that are below a certain number in each of the classes. Specifically, classes with number of images less than 800 are selected to be augmented. For this purpose, images are randomly selected from each class and various transformations like random zoom, random translation, random rotation and histogram equalization are applied. Also, data is generated is done a way such that the final distribution of class vs count is relatively flat. Finally, the generated data is converted to grayscale and normalized before concatenating with the original training dataset.
+
+Examples from this augmented training dataset are given in figure below.
+
+
+
+
+Below is an image showing distribution of images after the training dataset is augmented.
+
+
 As a first step, I decided to convert the images to grayscale because ...
 
 Here is an example of a traffic sign image before and after grayscaling.
