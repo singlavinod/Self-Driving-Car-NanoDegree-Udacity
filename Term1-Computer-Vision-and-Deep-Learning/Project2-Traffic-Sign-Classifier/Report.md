@@ -11,9 +11,9 @@ The goals of this project are the following:
 
 [//]: # (Image References)
 
-[image1]: ./examples/visualization.jpg "Visualization"
-[image2]: ./examples/grayscale.jpg "Grayscaling"
-[image3]: ./examples/random_noise.jpg "Random Noise"
+[image1]: ./report_images/2.1.jpg "Training Dataset: count vs class"
+[image2]: ./report_images/2.2.jpg "Testing Dataset: count vs class"
+[image3]: ./report_images/2.3.jpg "Validation Dataset: count vs class"
 [image4]: ./examples/placeholder.png "Traffic Sign 1"
 [image5]: ./examples/placeholder.png "Traffic Sign 2"
 [image6]: ./examples/placeholder.png "Traffic Sign 3"
@@ -56,7 +56,7 @@ As a first step, I decided to convert the images to grayscale because ...
 
 Here is an example of a traffic sign image before and after grayscaling.
 
-![alt text][image2]
+![alt text][image1]
 
 As a last step, I normalized the image data because ...
 
