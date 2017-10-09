@@ -34,11 +34,11 @@ I used the vanilla python commands and numpy library to calculate summary statis
 
 Below is an exploratory visualization of the data set. The bar charts depict distribution of images per class in training, testing and validation datasets. It is clear that there is a wide variation in number of images available per class in each of these datasets. Therefore, it is logical to think that data augmentation using preprocessing techniques can help reduce this disparity and thereby result in improved performance of the network.
 
-![Figure 1](https://github.com/vsingla2/Self-Driving-Car-NanoDegree-Udacity/edit/master/Term1-Computer-Vision-and-Deep-Learning/Project2-Traffic-Sign-Classifier/report_images/2_1.png)
+![Figure 1](https://raw.githubusercontent.com/vsingla2/Self-Driving-Car-NanoDegree-Udacity/edit/master/Term1-Computer-Vision-and-Deep-Learning/Project2-Traffic-Sign-Classifier/report_images/2_1.png)
 
-![Figure 2](https://github.com/vsingla2/Self-Driving-Car-NanoDegree-Udacity/edit/master/Term1-Computer-Vision-and-Deep-Learning/Project2-Traffic-Sign-Classifier/report_images/2_2.png)
+![Figure 2](https://raw.githubusercontent.com/vsingla2/Self-Driving-Car-NanoDegree-Udacity/edit/master/Term1-Computer-Vision-and-Deep-Learning/Project2-Traffic-Sign-Classifier/report_images/2_2.png)
 
-![Figure 3](https://github.com/vsingla2/Self-Driving-Car-NanoDegree-Udacity/edit/master/Term1-Computer-Vision-and-Deep-Learning/Project2-Traffic-Sign-Classifier/report_images/2_3.png)
+![Figure 3](https://raw.githubusercontent.com/vsingla2/Self-Driving-Car-NanoDegree-Udacity/edit/master/Term1-Computer-Vision-and-Deep-Learning/Project2-Traffic-Sign-Classifier/report_images/2_3.png)
 
 ### Design and Test a Model Architecture
 
