@@ -96,8 +96,9 @@ The decision to select LeNet as a base structure was made because performance of
 #### 3. Describe how you trained your model. The discussion can include the type of optimizer, the batch size, number of epochs and any hyperparameters such as learning rate.
 
 To train the model, I used Adam optimizer. The final settings utilized for training are given below:
+
 | Parameter        		|     Value        					| 
-|:---------------------:|:---------------------------------------------:| 
+|:---------------------:|:-------------------------------------:| 
 | Batch size         		| 200   							| 
 | Epochs     	| 60 	|
 | Learning rate					|		0.001										|
