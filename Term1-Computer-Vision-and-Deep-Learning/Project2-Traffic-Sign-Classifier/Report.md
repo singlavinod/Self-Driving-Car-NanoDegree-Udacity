@@ -76,15 +76,21 @@ The final model was a slightly modified version of the LeNet architecture and co
 | Layer         		|     Description	        					| 
 |:---------------------:|:---------------------------------------------:| 
 | Input         		| 32x32x1 grayscaled, normalized image   							| 
-| Convolution 3x3     	| 1x1 stride, valid padding, outputs 28x28x6 	|
+| Convolution 5x5     	| 1x1 stride, valid padding, outputs 28x28x6 	|
 | RELU					|												|
 | Max pooling	      	| 2x2 stride,  outputs 14x14x6 				|
-| Convolution 3x3	    | etc.      									|
-| Fully connected		| etc.        									|
-| Softmax				| etc.        									|
-|						|												|
-|						|												|
- 
+| Convolution 5x5     	| 1x1 stride, valid padding, outputs 10x10x16 	|
+| RELU					|												|
+| Max pooling	      	| 2x2 stride,  outputs 5x5x16 				|
+| Flatten					|					5x5x16 -> 400							|
+| Dropout     | keep_prob = 0.8    |
+| Fully connected    | 400 -> 120 |
+| RELU					|												|
+| Dropout     | keep_prob = 0.75    |
+| Fully connected    | 120 -> 84 |
+| RELU					|												|
+| Fully connected    | 84 -> 43 |
+
 The decision to select LeNet as a base structure was made because performance of LeNet for classifying characters is well documented. As traffic signs are also made of simple shapes like characters, one can reasonably assume that LeNet would give satisfactory performance. 
 
 #### 3. Describe how you trained your model. The discussion can include the type of optimizer, the batch size, number of epochs and any hyperparameters such as learning rate.
