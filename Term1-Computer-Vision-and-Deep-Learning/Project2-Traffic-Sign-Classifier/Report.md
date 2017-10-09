@@ -14,7 +14,7 @@ The goals of this project are the following:
 [image2]: ./report_images/2_2.png "Testing Dataset Visualization"
 [image3]: ./report_images/2_3.png "Validation Dataset Visualization"
 [image4]: ./report_images/3_1.png "Augmented Training Data Examples"
-[image5]: ./report_images/2_3.png "Augmented Training Dataset Visualization"
+[image5]: ./report_images/3_2.png "Augmented Training Dataset Visualization"
 [image6]: ./report_images/2_3.png "Validation Dataset Visualization"
 [image7]: ./report_images/2_3.png "Validation Dataset Visualization"
 [image8]: ./report_images/2_3.png "Validation Dataset Visualization"
