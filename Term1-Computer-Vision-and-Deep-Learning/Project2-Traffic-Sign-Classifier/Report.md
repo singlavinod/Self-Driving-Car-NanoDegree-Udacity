@@ -10,7 +10,7 @@ The goals of this project are the following:
 
 [//]: # (Image References)
 
-[image1]: /report_images/2_1.png "Training Dataset Visualization"
+[image1]: ./report_images/2_1.png "Training Dataset Visualization"
 [image2]: ./examples/grayscale.jpg "Grayscaling"
 [image3]: ./examples/random_noise.jpg "Random Noise"
 [image4]: ./examples/placeholder.png "Traffic Sign 1"
