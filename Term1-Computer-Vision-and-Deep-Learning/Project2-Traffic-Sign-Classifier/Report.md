@@ -15,7 +15,7 @@ The goals of this project are the following:
 [image3]: ./report_images/2_3.png "Validation Dataset Visualization"
 [image4]: ./report_images/3_1.png "Augmented Training Data Examples"
 [image5]: ./report_images/3_2.png "Augmented Training Dataset Visualization"
-[image6]: ./report_images/2_3.png "Validation Dataset Visualization"
+[image6]: ./report_images/4_1.png "Loss/Accuracy vs Epoch"
 [image7]: ./report_images/2_3.png "Validation Dataset Visualization"
 [image8]: ./report_images/2_3.png "Validation Dataset Visualization"
 
@@ -115,6 +115,8 @@ My final model results were:
 * test set accuracy of 91.1 %
 
 To keep things manageable at the beginning, LeNet architecture (implemented in the LeNet lab) was selected. However, the validation accuracy was limited to 89-90%. Moreover, plotting the loss and accuracy plots revealed overfitting. To overcome this issue, two dropout layers were added. The keep probability for these dropout layers was tuned by trial and error. The loss and accuracy plots for the current architecture are given below. It can be observed that the transition of accuracy and loss as the number of epochs increase is smooth.
+
+![alt text][image6]
 
 As mentioned earlier, the performance of LeNet for classifying characters is well documented. Also traffic signs are made of simple shapes like characters from which one can reasonably assume that LeNet would give satisfactory performance. Moreover, the final model results verify that the model is indeed working well.
 
