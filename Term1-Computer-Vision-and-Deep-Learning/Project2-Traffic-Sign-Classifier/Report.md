@@ -36,15 +36,15 @@ You're reading it! and here is a link to my [project code](https://github.com/vs
 
 I used the vanilla python commands and numpy library to calculate summary statistics of the traffic signs data set:
 
-* The size of training set is 34799
-* The size of the validation set is 4410
-* The size of test set is 12630
+* Number of images in training set is 34799
+* Number of images in validation set is 4410
+* Number of images in test set is 12630
 * The shape of a traffic sign image is (32, 32, 3)
 * The number of unique classes/labels in the data set is 43
 
 #### 2. Include an exploratory visualization of the dataset.
 
-Here is an exploratory visualization of the data set. It is a bar chart showing how the data ...
+Below is an exploratory visualization of the data set. The bar charts depict distribution of images per class in training, testing and validation datasets. It is clear that there is a wide variation in number of images available per class in each of these datasets. Therefore, it is logical to think that data augmentation using preprocessing techniques can help reduce this disparity and thereby result in improved performance of the network.
 
 ![alt text][image1]
 
