@@ -181,17 +181,17 @@ For the third image, the model is relatively sure that this is a road work sign 
 | .39     				| Beware of ice/snow 										|
 | .0					| Bumpy road										|
 | .0	      			| No passing for vehicles over 3.5 metric tons				 				|
-| .0				    | Slippery road      							|
+| .0				    | Slippery road      			|
 
 For the fourth image, the model is sure that this is a speed limit (20km/h) sign (probability of 0.99999). However, the image contains a speed limit (70km/h) sign. The top five soft max probabilities were
 
-| Probability         	|     Prediction	        					| 
+| Probability         	|     Prediction	        			| 
 |:---------------------:|:---------------------------------------------:| 
-| .99999         			| Speed limit (20km/h)   									| 
+| .99999         			| Speed limit (20km/h)   							| 
 | .0     				| Keep left										|
-| .0					| Speed limit (30km/h)										|
-| .0	      			| Go straight or left					 				|
-| .0				    | Roundabout mandatory      							|
+| .0					| Speed limit (30km/h)								|
+| .0	      			| Go straight or left				|
+| .0				    | Roundabout mandatory    	|
 
 For the fifth image, the model is sure that this is a keep right sign (probability of 1), and the image does contain a keep right sign. The top five soft max probabilities were
 
