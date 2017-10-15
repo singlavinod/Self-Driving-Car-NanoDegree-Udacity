@@ -14,8 +14,8 @@ The goals / steps of this project are the following:
 [image2]: ./write_up_images/Fig2.jpg "right"
 [image3]: ./write_up_images/Fig3.jpg "mid"
 [image4]: ./write_up_images/Fig4.jpg "center"
-[image5]: ./write_up_images/Fig5.jpg "original"
-[image6]: ./write_up_images/Fig6.jpg "flipped"
+[image5]: ./write_up_images/Fig5.jpg "flipped"
+[image6]: ./write_up_images/Fig6.jpg "cropped"
 [image7]: ./write_up_images/Fig7.png "Loss vs Epoch"
 
 ### Rubric Points
@@ -107,12 +107,13 @@ I then recorded the vehicle recovering from the left side and right sides of the
 
 Then I repeated this process on track two in order to get more data points.
 
-To augment the data sat, I also flipped images and steering measurements thinking that this would help generalize the model. For example, here is an image that has then been flipped:
+To augment the data sat, I also flipped images and steering measurements thinking that this would help generalize the model. For example, here is a view from the first figure that has then been flipped:
 
-![original][image5]
-![flipped][image6]
+![flipped][image5]
 
-After the collection process, I had 47181 number of data points. I then preprocessed this data by cropping irrelevant data from the top and bottom of the image. This led to a final image size of 65 x 320 x 3 which significantly reduced the computational requirements.
+After the collection process, I had 47181 number of data points. I then preprocessed this data by cropping irrelevant data (sample below) from the top and bottom of the image. This led to a final image size of 65 x 320 x 3 which significantly reduced the computational requirements.
+
+![cropped][image6]
 
 I finally randomly shuffled the data set and put 20% of the data into a validation set. 
 
