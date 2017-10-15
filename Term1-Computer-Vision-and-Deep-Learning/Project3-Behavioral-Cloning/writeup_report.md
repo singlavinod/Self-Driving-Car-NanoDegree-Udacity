@@ -102,17 +102,21 @@ To capture good driving behavior, I first recorded two laps on track one using c
 I then recorded the vehicle recovering from the left side and right sides of the road back to center so that the vehicle would learn to navigate the turns instead of memorizing the track. These images show what a recovery looks like starting from right to center :
 
 ![right][image2]
+
 ![mid][image3]
+
 ![center][image4]
 
 Then I repeated this process on track two in order to get more data points.
 
 To augment the data sat, I also flipped images and steering measurements thinking that this would help generalize the model. For example, here is a view from the first figure that has then been flipped:
 
+![center][image1]
 ![flipped][image5]
 
 After the collection process, I had 47181 number of data points. I then preprocessed this data by cropping irrelevant data (sample below) from the top and bottom of the image. This led to a final image size of 65 x 320 x 3 which significantly reduced the computational requirements.
 
+![center][image1]
 ![cropped][image6]
 
 I finally randomly shuffled the data set and put 20% of the data into a validation set. 
@@ -121,4 +125,4 @@ I used this training data for training the model. The validation set helped dete
 
 ![loss_vs_epoch][image7]
 
-**Further improvements can be made to the simple PI controller used in drive.py to reduce oscillations for the current model.**
+**Further improvements can be made to the simple PI controller used in drive.py to smoothen steering angles for the current model.**
