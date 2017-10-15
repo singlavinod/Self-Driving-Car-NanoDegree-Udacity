@@ -111,13 +111,11 @@ Then I repeated this process on track two in order to get more data points.
 
 To augment the data sat, I also flipped images and steering measurements thinking that this would help generalize the model. For example, here is a view from the first figure that has then been flipped:
 
-![center][image1]
-![flipped][image5]
+![center][image1]             ![flipped][image5]
 
 After the collection process, I had 47181 number of data points. I then preprocessed this data by cropping irrelevant data (sample below) from the top and bottom of the image. This led to a final image size of 65 x 320 x 3 which significantly reduced the computational requirements.
 
-![center][image1]
-![cropped][image6]
+![center][image1]             ![cropped][image6]
 
 I finally randomly shuffled the data set and put 20% of the data into a validation set. 
 
