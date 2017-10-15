@@ -118,6 +118,6 @@ I finally randomly shuffled the data set and put 20% of the data into a validati
 
 I used this training data for training the model. The validation set helped determine if the model was over or under fitting. The ideal number of epochs was 3 as evidenced by increasing loss after 3 epochs (see below). I used an adam optimizer so that manually training the learning rate wasn't necessary.
 
-![loss vs epoch][image 7]
+![loss_vs_epoch][image 7]
 
-** Further improvements can be made to the simple PI controller used in drive.py to reduce oscillations for the current model. **
+**Further improvements can be made to the simple PI controller used in drive.py to reduce oscillations for the current model.**
