@@ -47,7 +47,7 @@ The model.py file contains the code for training and saving the convolution neur
 
 #### 1. An appropriate model architecture has been employed
 
-My model consists of a convolution neural network with 5x5 and 3x3 filter sizes and depths between 24 and 64 (model.py lines 86-90) 
+My model consists of a convolution neural network with 5x5 and 3x3 filter sizes and depths between 24 and 64 (model.py lines 86-90).
 
 The model includes RELU layers to introduce nonlinearity (code lines 86-90), and the data is normalized in the model using a Keras lambda layer (code line 85). 
 
@@ -61,7 +61,7 @@ The model used an adam optimizer, so the learning rate was not tuned manually (m
 
 #### 4. Appropriate training data
 
-Training data was chosen to keep the vehicle driving on the road. I used a combination of center lane driving, recovering from the left and right sides of the road on both tracks instead of just one.
+Training data was chosen to keep the vehicle driving on the road. I used a combination of center lane driving, recovering from the left and right sides of the road. This was done for both tracks to help generalize the model.
 
 For details about how I created the training data, see the next section. 
 
@@ -69,24 +69,19 @@ For details about how I created the training data, see the next section.
 
 #### 1. Solution Design Approach
 
-The overall strategy for deriving a model architecture was to ...
-
-My first step was to use a convolution neural network model similar to the ... I thought this model might be appropriate because ...
-
-In order to gauge how well the model was working, I split my image and steering angle data into a training and validation set. I found that my first model had a low mean squared error on the training set but a high mean squared error on the validation set. This implied that the model was overfitting. 
-
-To combat the overfitting, I modified the model so that ...
-
-Then I ... 
-
-The final step was to run the simulator to see how well the car was driving around track one. There were a few spots where the vehicle fell off the track... to improve the driving behavior in these cases, I ....
+The model architecture I used was inspired from a similar network employed by NVIDIA team for steering control of an autonomous vehicle.
+I thought this model is appropriate because there are 5 convolutional layers and documented success of the network for steering control. In order to gauge how well the model was working, I split my image and steering angle data into a training and validation set in 80 to 20 ratio. The final step was to run the simulator to see how well the car was driving around the track. There were a few spots where the vehicle fell off the track on increasing the set speed in drive.py file. To improve the driving behavior in these cases, I augmented the training data with driving data from track 2.
 
 At the end of the process, the vehicle is able to drive autonomously around the track without leaving the road.
 
 #### 2. Final Model Architecture
 
-The final model architecture (model.py lines 18-24) consisted of a convolution neural network with the following layers and layer sizes ...
-
+The final model architecture (model.py lines 85-95) consisted of a convolutional neural network with the following layers and layer sizes.
+|Layer          | Size          |
+| ------------- |:-------------:|
+| Input         | 65 x 320 x 3  |
+| Lambda (normalization)        | centered      |
+| zebra stripes | are neat      |
 Here is a visualization of the architecture (note: visualizing the architecture is optional according to the project rubric)
 
 ![alt text][image1]
