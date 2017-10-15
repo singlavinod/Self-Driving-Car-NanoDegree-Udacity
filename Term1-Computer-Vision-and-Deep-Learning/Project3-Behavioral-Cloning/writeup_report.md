@@ -47,7 +47,7 @@ The model.py file contains the code for training and saving the convolution neur
 
 #### 1. An appropriate model architecture has been employed
 
-My model consists of a convolution neural network with 5x5 and 3x3 filter sizes and depths between 24 and 64 (model.py lines 86-90).
+My model consists of a convolution neural network with 2x2 filter sizes and depths between 24 and 64 (model.py lines 86-90).
 
 The model includes RELU layers to introduce nonlinearity (code lines 86-90), and the data is normalized in the model using a Keras lambda layer (code line 85). 
 
@@ -78,11 +78,21 @@ At the end of the process, the vehicle is able to drive autonomously around the 
 
 The final model architecture (model.py lines 85-95) consisted of a convolutional neural network with the following layers and layer sizes.
 
-| Layer          | Size          |
-| ------------- |:-------------:|
-| Input         | 65 x 320 x 3  |
-| Lambda (normalization)        | centered      |
-| zebra stripes | are neat      |
+| Layer                            |    Size       |
+| --------------------             |:-------------:|
+| Input                            | 65 x 320 x 3  |
+| Lambda (normalization)           | 65 x 320 x 3  |
+| Convolution with relu activation | 5 x 5 x 24 with 2x2 filters  |
+| Convolution with relu activation | 5 x 5 x 36 with 2x2 filters  |
+| Convolution with relu activation | 5 x 5 x 48 with 2x2 filters  |
+| Convolution with relu activation | 3 x 3 x 64   |
+| Convolution with relu activation | 3 x 3 x 64   |
+| Flatten                          |              |
+| Fully connected                  | 100          |
+| Fully connected                  | 50          |
+| Fully connected                  | 10          |
+| Output                           | 1          |
+
 Here is a visualization of the architecture (note: visualizing the architecture is optional according to the project rubric)
 
 ![alt text][image1]
