@@ -10,13 +10,13 @@ The goals / steps of this project are the following:
 
 [//]: # (Image References)
 
-[image1]: ./write_up_images/figure1.png "Loss vs Epoch"
-[image2]: ./examples/placeholder.png "Grayscaling"
-[image3]: ./examples/placeholder_small.png "Recovery Image"
-[image4]: ./examples/placeholder_small.png "Recovery Image"
-[image5]: ./examples/placeholder_small.png "Recovery Image"
-[image6]: ./examples/placeholder_small.png "Normal Image"
-[image7]: ./examples/placeholder_small.png "Flipped Image"
+[image1]: ./write_up_images/Fig1.jpg "center"
+[image2]: ./write_up_images/Fig2.jpg "right"
+[image3]: ./write_up_images/Fig3.jpg "mid"
+[image4]: ./write_up_images/Fig4.jpg "center"
+[image5]: ./write_up_images/Fig5.jpg "original"
+[image6]: ./write_up_images/Fig6.jpg "flipped"
+[image7]: ./write_up_images/Fig7.png "Loss vs Epoch"
 
 ### Rubric Points
 Here I will consider the [rubric points](https://review.udacity.com/#!/rubrics/432/view) individually and describe how I addressed each point in my implementation.  
@@ -97,24 +97,27 @@ The final model architecture (model.py lines 85-95) consisted of a convolutional
 
 To capture good driving behavior, I first recorded two laps on track one using center lane driving. Here is an example image of center lane driving:
 
-![alt text][image2]
+![center][image1]
 
 I then recorded the vehicle recovering from the left side and right sides of the road back to center so that the vehicle would learn to navigate the turns instead of memorizing the track. These images show what a recovery looks like starting from right to center :
 
-![right][image3]
-![mid][image4]
-![center][image5]
+![right][image2]
+![mid][image3]
+![center][image4]
 
 Then I repeated this process on track two in order to get more data points.
 
 To augment the data sat, I also flipped images and steering measurements thinking that this would help generalize the model. For example, here is an image that has then been flipped:
 
-![alt text][image6]
-![alt text][image7]
+![original][image5]
+![flipped][image6]
 
-After the collection process, I had X number of data points. I then preprocessed this data by cropping irrelevant data from the top and bottom of the image. This led to a final image size of 65 x 320 x 3 which significantly reduced the computational requirements.
+After the collection process, I had 47181 number of data points. I then preprocessed this data by cropping irrelevant data from the top and bottom of the image. This led to a final image size of 65 x 320 x 3 which significantly reduced the computational requirements.
 
 I finally randomly shuffled the data set and put 20% of the data into a validation set. 
 
-I used this training data for training the model. The validation set helped determine if the model was over or under fitting. The ideal number of epochs was 3 as evidenced by increasing loss after 3 epochs. I used an adam optimizer so that manually training the learning rate wasn't necessary.
+I used this training data for training the model. The validation set helped determine if the model was over or under fitting. The ideal number of epochs was 3 as evidenced by increasing loss after 3 epochs (see below). I used an adam optimizer so that manually training the learning rate wasn't necessary.
 
+![loss vs epoch][image 7]
+
+** Further improvements can be made to the simple PI controller used in drive.py to reduce oscillations for the current model. **
