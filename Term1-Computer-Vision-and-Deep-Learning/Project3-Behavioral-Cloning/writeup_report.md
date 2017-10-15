@@ -93,10 +93,6 @@ The final model architecture (model.py lines 85-95) consisted of a convolutional
 | Fully connected                  | 10          |
 | Output                           | 1          |
 
-Here is a visualization of the architecture (note: visualizing the architecture is optional according to the project rubric)
-
-![alt text][image1]
-
 #### 3. Creation of the Training Set & Training Process
 
 To capture good driving behavior, I first recorded two laps on track one using center lane driving. Here is an example image of center lane driving:
