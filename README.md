@@ -10,6 +10,7 @@ The program is 9 months long and has three terms in total with individual terms 
 
 3. Path Planning and System Integration
 
-Each of terms has exshaustive projects to ensure adequate percolation of concepts discussed. The repository is organized according to individual terms and the corresponding projects/labs are contained within the subdirectories.
+Each of terms has comprehensive projects to ensure percolation of presented concepts. The repository is organized according to individual terms and corresponding projects/labs are contained within the subdirectories.
 
+Note: Current students please avoid plagiarizing the code as it is in violation of [Udacity's honor code](https://udacity.zendesk.com/hc/en-us/articles/210667103-What-is-the-Udacity-Honor-Code-).
 
