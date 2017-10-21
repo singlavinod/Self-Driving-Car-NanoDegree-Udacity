@@ -9,3 +9,7 @@ The program is 9 months long and has three terms in total with individual terms 
 2. Sensor Fusion, Localization and Control
 
 3. Path Planning and System Integration
+
+Each of terms has exshaustive projects to ensure adequate percolation of concepts discussed. The repository is organized according to individual terms and the corresponding projects/labs are contained within the subdirectories.
+
+
