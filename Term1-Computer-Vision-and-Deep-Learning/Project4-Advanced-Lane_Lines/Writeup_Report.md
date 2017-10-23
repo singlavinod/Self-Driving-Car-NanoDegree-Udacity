@@ -110,4 +110,15 @@ Here's a [link to my video result](./project_video.mp4)
 ### Discussion
 
 #### 1. Briefly discuss any problems / issues you faced in your implementation of this project.  Where will your pipeline likely fail?  What could you do to make it more robust?
+Challenges:
+* Getting the thresholds right
+* Implementing class structure for discarding outliers
+
+Likely failures of pipeline:
+* on steep bends/curves
+* challenge videos
+
+Future Work:
+* Implementing dynamic thresholding
+* Look ahead filter
 
