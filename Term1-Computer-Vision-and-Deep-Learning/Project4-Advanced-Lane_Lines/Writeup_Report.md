@@ -20,7 +20,7 @@ The goals / steps of this project are the following:
 [image4]: ./output_images/image4.png "Perspective transform"
 [image5]: ./output_images/image5.png "Identify lane lines"
 [image6]: ./output_images/image6.png "Lane lines mapped"
-[video1]: ./project_video.mp4 "Video"
+[video1]: ./output_video.mp4 "Video"
 
 #### [Rubric Points](https://review.udacity.com/#!/rubrics/571/view) 
 
@@ -103,7 +103,7 @@ I implemented this step using the function `map_color()` in cell 2 of the jupyte
 
 #### 1. Provide a link to your final video output.  Your pipeline should perform reasonably well on the entire project video (wobbly lines are ok but no catastrophic failures that would cause the car to drive off the road!).
 
-Here's a [link to my video result](./project_video.mp4)
+Here's a [link to my video result](./output_video.mp4)
 
 ---
 
