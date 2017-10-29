@@ -3,7 +3,7 @@ import cv2
 import matplotlib.pyplot as plt
 import matplotlib.image as mpimg
 
-image = mpimg.imread('cutout1.jpg')
+image = mpimg.imread(filename)
 
 # Define a function to compute color histogram features  
 def color_hist(img, nbins=32, bins_range=(0, 256)):
