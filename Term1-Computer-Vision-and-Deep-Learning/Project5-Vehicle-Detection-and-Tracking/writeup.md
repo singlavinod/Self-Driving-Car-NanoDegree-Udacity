@@ -12,17 +12,17 @@ The goals / steps of this project are the following:
 [//]: # "Image References"
 [image1]: ./writeup_imgs/car_not_car.png
 [image2]: ./writeup_imgs/HOG_example.jpg
-[image3]: ./writeup_imgs/visualize_colorspaces_rgb.png
-[image4]: ./writeup_imgs/visualize_colorspaces_hsv.png
-[image5]: ./writeup_imgs/visualize_colorspaces_ycrcb.png
-[image6]: ./writeup_imgs/visualize_colorspaces_luv.png
-[image7]: ./writeup_imgs/visualize_colorspaces_yuv.png
-[image8]: ./writeup_imgs/pipeline_detections1.png
-[image9]: ./writeup_imgs/pipeline_detections2.png
-[image10]: ./writeup_imgs/pipeline_detections3.png
-[image11]: ./writeup_imgs/heatmap1.png
-[image12]: ./writeup_imgs/heatmap2.png
-[image13]: ./writeup_imgs/heatmap3.png
+[image3]: ./writeup_imgs/visualize_colorspaces_rgb.PNG
+[image4]: ./writeup_imgs/visualize_colorspaces_hsv.PNG
+[image5]: ./writeup_imgs/visualize_colorspaces_ycrcb.PNG
+[image6]: ./writeup_imgs/visualize_colorspaces_luv.PNG
+[image7]: ./writeup_imgs/visualize_colorspaces_yuv.PNG
+[image8]: ./writeup_imgs/pipeline_detections1.PNG
+[image9]: ./writeup_imgs/pipeline_detections2.PNG
+[image10]: ./writeup_imgs/pipeline_detections3.PNG
+[image11]: ./writeup_imgs/heatmap1.PNG
+[image12]: ./writeup_imgs/heatmap2.PNG
+[image13]: ./writeup_imgs/heatmap3.PNG
 [video1]: ./output_video.mp4
 
 ## [Rubric](https://review.udacity.com/#!/rubrics/513/view) Points
