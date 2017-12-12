@@ -58,7 +58,7 @@ void KalmanFilter::UpdateEKF(const VectorXd &z) {
   VectorXd y = z - z_pred;
   
   //Normalize residual phi to be between -pi to pi
-  y(2) = atan2(sin(y(2)), cos(y(2)));
+  y(1) = atan2(sin(y(1)), cos(y(1)));
   
   MatrixXd Ht = H_.transpose();
   MatrixXd S = H_ * P_ * Ht + R_;
