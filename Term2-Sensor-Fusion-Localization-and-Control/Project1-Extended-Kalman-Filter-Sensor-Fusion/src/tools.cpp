@@ -1,4 +1,5 @@
 #include <iostream>
+#include <math.h>
 #include "tools.h"
 
 using Eigen::VectorXd;
@@ -6,17 +7,14 @@ using Eigen::MatrixXd;
 using std::vector;
 
 Tools::Tools() {
-	cout << "Running tools constructor...\n" <<endl;
+	//cout << "Tools constructor running...\n" <<endl;
 }
 
 Tools::~Tools() {}
 
-VectorXd Tools::CalculateRMSE(const vector<VectorXd> estimations,
-                              const vector<VectorXd> ground_truth) {
-  /**
-  TODO:
-    * Calculate the RMSE here.
-  */
+VectorXd Tools::CalculateRMSE(const vector<VectorXd> &estimations,
+                              const vector<VectorXd> &ground_truth) {
+  //Calculate the RMSE here.
 	VectorXd rmse(4);
 	rmse << 0,0,0,0;
 
@@ -49,11 +47,9 @@ VectorXd Tools::CalculateRMSE(const vector<VectorXd> estimations,
 	return rmse;
 }
 
-MatrixXd Tools::CalculateJacobian(const VectorXd x_state) {
-  /**
-  TODO:
-    * Calculate a Jacobian here.
-  */
+MatrixXd Tools::CalculateJacobian(const VectorXd &x_state) {
+  //Calculate a Jacobian here.
+
 	MatrixXd Hj(3,4);
 	//recover state parameters
 	float px = x_state(0);
