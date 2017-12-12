@@ -4,11 +4,11 @@ This repository contains code and writeups for projects and labs completed as a 
 
 The program is 9 months long and has three terms in total with individual terms focussing on:
 
-1. Computer Vision and Deep Learning - *In progress*
+1. Computer Vision and Deep Learning - *Completed*
 
-2. Sensor Fusion, Localization and Control
+2. Sensor Fusion, Localization and Control - *In progress*
 
-3. Path Planning and System Integration
+3. Path Planning and System Integration - *Planned*
 
 Each of terms has comprehensive projects to ensure percolation of presented concepts. The repository is organized according to individual terms and corresponding projects/labs are contained within the subdirectories.
 
