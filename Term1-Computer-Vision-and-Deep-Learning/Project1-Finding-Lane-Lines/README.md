@@ -10,27 +10,27 @@ The pipeline consisted of 5 major steps excluding reading and writing the image.
 
 Consider the test image given below:
 
-![Figure 1](https://github.com/vsingla2/Udacity-SDCND-Term1-P1/blob/master/writeup_images/solidWhiteRight.jpg)
+![Figure 1](https://github.com/vsingla2/Self-Driving-Car-NanoDegree-Udacity/blob/master/Term1-Computer-Vision-and-Deep-Learning/Project1-Finding-Lane-Lines/writeup_images/solidWhiteRight.jpg)
 
 The test image is first converted to grayscale from RGB using the helper function grayscale(). This produces the below image.
 
-![Figure 2](https://github.com/vsingla2/Udacity-SDCND-Term1-P1/blob/master/writeup_images/_gray_solidWhiteRight.jpg)
+![Figure 2](https://github.com/vsingla2/Self-Driving-Car-NanoDegree-Udacity/blob/master/Term1-Computer-Vision-and-Deep-Learning/Project1-Finding-Lane-Lines/writeup_images/_gray_solidWhiteRight.jpg)
 
 The grayscaled image is given a gaussian blur to remove noise or spurious gradients. The blurred image is given below.
 
-![Figure 3](https://github.com/vsingla2/Udacity-SDCND-Term1-P1/blob/master/writeup_images/_blur_gray_solidWhiteRight.jpg)
+![Figure 3](https://github.com/vsingla2/Self-Driving-Car-NanoDegree-Udacity/blob/master/Term1-Computer-Vision-and-Deep-Learning/Project1-Finding-Lane-Lines/writeup_images/_blur_gray_solidWhiteRight.jpg)
 
 Canny edge detection is applied on this blurred image and a binary image shown below is produced.
 
-![Figure 4](https://github.com/vsingla2/Udacity-SDCND-Term1-P1/blob/master/writeup_images/_edges_solidWhiteRight.jpg)
+![Figure 4](https://github.com/vsingla2/Self-Driving-Car-NanoDegree-Udacity/blob/master/Term1-Computer-Vision-and-Deep-Learning/Project1-Finding-Lane-Lines/writeup_images/_edges_solidWhiteRight.jpg)
 
 This image contains edges that are not relevant for lane finding problem. A region of interest is defined to separate the lanes from sorrounding environment and a masked image containing only the lanes is extracted using cv2.bitwise_and() function from opencv library. This can be seen below.
 
-![Figure 5](https://github.com/vsingla2/Udacity-SDCND-Term1-P1/blob/master/writeup_images/_masked_edges_solidWhiteRight.jpg)
+![Figure 5](https://github.com/vsingla2/Self-Driving-Car-NanoDegree-Udacity/blob/master/Term1-Computer-Vision-and-Deep-Learning/Project1-Finding-Lane-Lines/writeup_images/_masked_edges_solidWhiteRight.jpg)
 
 This binary image of identified lane lines is finally merged with the original image using cv2.addweighted() function from opencv library. This produces an image given below. Note that, this is without making any modifications to the drawlines() helper function. It can be observed that the lines are not continuous as required.
 
-![Figure 6](https://github.com/vsingla2/Udacity-SDCND-Term1-P1/blob/master/writeup_images/_lines_edges_solidWhiteRight.jpg)
+![Figure 6](https://github.com/vsingla2/Self-Driving-Car-NanoDegree-Udacity/blob/master/Term1-Computer-Vision-and-Deep-Learning/Project1-Finding-Lane-Lines/writeup_images/_lines_edges_solidWhiteRight.jpg)
 
 ## Modification to drawlines() helper function
 Since the resulting line segments after the processing the image through the pipeline are not continuous, a modification is made to the drawlines() helper function. Consider the code snippet below:
