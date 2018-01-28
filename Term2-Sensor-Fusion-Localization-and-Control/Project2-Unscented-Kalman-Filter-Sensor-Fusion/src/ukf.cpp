@@ -253,7 +253,9 @@ void UKF::Prediction(double delta_t) {
     Xsig_pred_(3,i) = yaw_p;
     Xsig_pred_(4,i) = yawd_p;
   }
-
+  
+  //predicted state mean
+  x_.fill(0);
   for (int i = 0; i < 2 * n_aug_ + 1; i++) {  //iterate over sigma points
     x_ = x_ + weights_(i) * Xsig_pred_.col(i);
   }
