@@ -19,7 +19,7 @@ Each of terms has comprehensive projects to ensure percolation of presented conc
 |[Traffic Sign Classifier](/Term1-Computer-Vision-and-Deep-Learning/Project2-Traffic-Sign-Classifier)|[Unscented Kalman Filter](/Term2-Sensor-Fusion-Localization-and-Control/Project2-Unscented-Kalman-Filter-Sensor-Fusion)|TBD|
 |[Behavioral Cloning](/Term1-Computer-Vision-and-Deep-Learning/Project3-Behavioral-Cloning)|TBD|TBD|
 |[Advanced Lane Lines](/Term1-Computer-Vision-and-Deep-Learning/Project4-Advanced-Lane_Lines)|TBD|TBD|
-|[Vehicle Detection and Tracking](/Term1-Computer-Vision-and-Deep-Learning/Project5-Vehicle-Detection-and-Tracking)|TBD|TBD|
+|[Vehicle Detection and Tracking](/Term1-Computer-Vision-and-Deep-Learning/Project5-Vehicle-Detection-and-Tracking)|[Model Predictive Controller](/Term2-Sensor-Fusion-Localization-and-Control/Project5-Model-Predictive-Controller)|TBD|
 
 
 *Current students please avoid plagiarizing the code as it results in violation of [Udacity's honor code](https://udacity.zendesk.com/hc/en-us/articles/210667103-What-is-the-Udacity-Honor-Code-).*
