@@ -146,7 +146,7 @@ int main() {
 
           int del_x = 5;
 
-          for (int i = 0; i < mpc_x_vals.size(); ++i)
+          for (unsigned int i = 0; i < mpc_x_vals.size(); ++i)
           {
             double x = i * del_x;
             double y = coeffs[3] *x*x*x + coeffs[2] *x*x + coeffs[1] *x + coeffs[0];

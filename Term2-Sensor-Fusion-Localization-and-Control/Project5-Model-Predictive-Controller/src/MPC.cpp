@@ -22,7 +22,7 @@ double dt = 0.1;
 const double Lf = 2.67;
 
 // Reference velocity
-double v_ref = 100; // mph
+double v_ref = 80; // mph
 
 // Define indexes for cost, state and actuator combined vector
 size_t x_start = 0;
@@ -51,9 +51,9 @@ class FG_eval {
     // Cost funnction
     // Add penalties for cross track error, heading error and deviation from reference velocity
     for(unsigned int r = 0; r < N; ++r){
-      fg[0] += 1000*pow(vars[r + cte_start], 2);
+      fg[0] += 2000*pow(vars[r + cte_start], 2);
       fg[0] += 1000*pow(vars[r + epsi_start], 2);
-      fg[0] += 10*pow(vars[r + v_start] - v_ref, 2);
+      fg[0] += pow(vars[r + v_start] - v_ref, 2);
       }
 
     // Add penalties for sharp turns and changes in velocity, ensures no jerks
@@ -113,7 +113,7 @@ class FG_eval {
       fg[1 + psi_start + t] = psi1 - (psi0 + v0 * (-delta) * dt / Lf);
       fg[1 + v_start + t] = v1 - (v0 + a * dt);
       fg[1 + cte_start + t] = cte1 - (y_des - y0 + v0 * CppAD::sin(epsi0) * dt);
-      fg[1 + epsi_start + t] = psi0 - (psi_des + v0 * (-delta) * dt / Lf);
+      fg[1 + epsi_start + t] = epsi1 - (psi0 - psi_des + v0 * (-delta) * dt / Lf);
     }
   }
 };
@@ -254,14 +254,14 @@ void MPC::Solve(Eigen::VectorXd state, Eigen::VectorXd coeffs) {
   std::cout << "Cost " << cost << std::endl;
 
   // steer, throttle and predicted coordinates are stored as class variables for easy access
-  this->steer = solution.x[delta_start];
-  this->throttle = solution.x[a_start];
+  steer = solution.x[delta_start];
+  throttle = solution.x[a_start];
 
-  this->mpc_x_vals = {};
-  this->mpc_y_vals = {};
+  mpc_x_vals = {};
+  mpc_y_vals = {};
 
   for(unsigned int i = 0; i < N - 1; ++i){
-    this->mpc_x_vals.push_back(solution.x[x_start + i + 1]);
-    this->mpc_y_vals.push_back(solution.x[y_start + i + 1]);
+    mpc_x_vals.push_back(solution.x[x_start + i + 1]);
+    mpc_y_vals.push_back(solution.x[y_start + i + 1]);
   }
 }
