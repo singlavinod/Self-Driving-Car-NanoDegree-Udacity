@@ -9,6 +9,11 @@ using namespace std;
 class MPC {
  public:
 
+  vector<double> mpc_x_vals;
+  vector<double> mpc_y_vals;
+  double steer;
+  double throttle;
+
   MPC();
 
   virtual ~MPC();
@@ -16,7 +21,7 @@ class MPC {
   // Solve the model given an initial state and polynomial coefficients.
   // Return the first actuations.
   
-  vector<double> Solve(Eigen::VectorXd state, Eigen::VectorXd coeffs);
+  void Solve(Eigen::VectorXd state, Eigen::VectorXd coeffs);
 };
 
 #endif /* MPC_H */

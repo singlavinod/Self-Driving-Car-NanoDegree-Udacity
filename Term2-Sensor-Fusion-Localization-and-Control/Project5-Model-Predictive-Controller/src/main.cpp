@@ -134,7 +134,7 @@ int main() {
           new_init_state[5] = epsi + v * (-steer_value) * delay / Lf;
           
           // Run model predictive controller for given state and polynomial coefficients
-          mpc.solve(new_init_state, coeffs); 
+          mpc.Solve(new_init_state, coeffs); 
           
           //Display the MPC predicted trajectory 
           vector<double> mpc_x_vals = mpc.mpc_x_vals;
