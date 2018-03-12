@@ -6,7 +6,7 @@ The program is 9 months long and has three terms in total with individual terms 
 
 1. Computer Vision and Deep Learning - *Completed*
 
-2. Sensor Fusion, Localization and Control - *In progress*
+2. Sensor Fusion, Localization and Control - *Completed*
 
 3. Path Planning and System Integration - *Planned*
 
@@ -17,8 +17,8 @@ Each of terms has comprehensive projects to ensure percolation of presented conc
 |:-------------:|:-------------:|:-------------:|
 |[Finding Lane Lines](/Term1-Computer-Vision-and-Deep-Learning/Project1-Finding-Lane-Lines)|[Extended Kalman Filter](/Term2-Sensor-Fusion-Localization-and-Control/Project1-Extended-Kalman-Filter-Sensor-Fusion)|TBD|
 |[Traffic Sign Classifier](/Term1-Computer-Vision-and-Deep-Learning/Project2-Traffic-Sign-Classifier)|[Unscented Kalman Filter](/Term2-Sensor-Fusion-Localization-and-Control/Project2-Unscented-Kalman-Filter-Sensor-Fusion)|TBD|
-|[Behavioral Cloning](/Term1-Computer-Vision-and-Deep-Learning/Project3-Behavioral-Cloning)|TBD|TBD|
-|[Advanced Lane Lines](/Term1-Computer-Vision-and-Deep-Learning/Project4-Advanced-Lane_Lines)|TBD|TBD|
+|[Behavioral Cloning](/Term1-Computer-Vision-and-Deep-Learning/Project3-Behavioral-Cloning)|[Particle Filter](/Term2-Sensor-Fusion-Localization-and-Control/Project3-Kidnapped-Vehicle-Project)|TBD|
+|[Advanced Lane Lines](/Term1-Computer-Vision-and-Deep-Learning/Project4-Advanced-Lane_Lines)|[PID Controller](/Term2-Sensor-Fusion-Localization-and-Control/Project4-PID-Controller)|TBD|
 |[Vehicle Detection and Tracking](/Term1-Computer-Vision-and-Deep-Learning/Project5-Vehicle-Detection-and-Tracking)|[Model Predictive Controller](/Term2-Sensor-Fusion-Localization-and-Control/Project5-Model-Predictive-Controller)|TBD|
 
 
