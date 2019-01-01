@@ -8,6 +8,7 @@
 #include "Eigen-3.3/Eigen/Core"
 #include "Eigen-3.3/Eigen/QR"
 #include "json.hpp"
+#include "spline.h"
 
 using namespace std;
 
@@ -205,9 +206,15 @@ int main() {
     map_waypoints_dy.push_back(d_y);
   }
 
+  // define lane variable {0:leftmost_lane, 1:middle_lane, 2:rightmost_lane}
+  int lane = 1;
 
-  h.onMessage([&map_waypoints_x, &map_waypoints_y, &map_waypoints_s, &map_waypoints_dx, &map_waypoints_dy]
-    (uWS::WebSocket<uWS::SERVER> ws, char *data, size_t length, uWS::OpCode opCode)
+  // define target velocity in m/s
+  double v_ref = 49.5;
+
+
+  h.onMessage([&v_ref,&map_waypoints_x, &map_waypoints_y, &map_waypoints_s, &map_waypoints_dx,
+    &map_waypoints_dy, &lane](uWS::WebSocket<uWS::SERVER> ws, char *data, size_t length, uWS::OpCode opCode)
     {
     // "42" at the start of the message means there's a websocket message event.
     // The 4 signifies a websocket message
@@ -224,9 +231,8 @@ int main() {
 
           if (event == "telemetry")
           {
-          // j[1] is the data JSON object
-
-          // Main car's localization Data
+            // j[1] is the data JSON object
+            // Main car's localization Data
             double car_x = j[1]["x"];
             double car_y = j[1]["y"];
             double car_s = j[1]["s"];
@@ -245,26 +251,142 @@ int main() {
             // Sensor Fusion Data, a list of all other cars on the same side of the road.
             auto sensor_fusion = j[1]["sensor_fusion"];
 
+            // Fetch number of points in previous path
+            int prev_path_size = previous_path_x.size();
+
             json msgJson;
 
+            // space for storing the planned trajectory
             vector<double> next_x_vals;
             vector<double> next_y_vals;
 
+            // define points being used to generate a smooth spline path
+            vector<double> pts_x;
+            vector<double> pts_y;
+
+            // define reference ego state from last cycle
+            double ref_ego_x = car_x;
+            double ref_ego_y = car_y;
+            double ref_ego_yaw = deg2rad(car_yaw);
+
+            // Fill some waypoints for spline curve fitting
+            if(prev_path_size >= 2)
+              // we have sufficient points from previous cycle
+            {
+              ref_ego_x = previous_path_x[prev_path_size - 1]; // update ego state x from last cycle
+              ref_ego_y = previous_path_y[prev_path_size - 1]; // update ego state y from last cycle
+
+              double prev_ref_ego_x = previous_path_x[prev_path_size - 2]; // update ego state x from second last cycle
+              double prev_ref_ego_y = previous_path_y[prev_path_size - 2]; // update ego state y from second last cycle
+
+              // store waypoints for spline curve fitting and avoiding jerk at the beginning
+              pts_x.push_back(prev_ref_ego_x);
+              pts_x.push_back(ref_ego_x);
+              pts_y.push_back(prev_ref_ego_y);
+              pts_y.push_back(ref_ego_y);
+
+              // update ego state yaw
+              ref_ego_yaw = atan2(ref_ego_y - prev_ref_ego_y, ref_ego_x - prev_ref_ego_x);
+            }
+            else
+              // we do not have sufficient points in previous path executed, 
+              // so we'll use current ego state and create an extra point
+              // looking backward which is tanget to current ego yaw
+            {
+              // create another point for second last cycle based on current yaw
+              // and at unit distance from current position
+              double prev_car_x = car_x - cos(ref_ego_yaw); 
+              double prev_car_y = car_y - sin(ref_ego_yaw);
+
+              // store waypoints for spline curve fitting and avoiding jerk at the beginning
+              pts_x.push_back(prev_car_x);
+              pts_x.push_back(car_x);
+              pts_y.push_back(prev_car_y);
+              pts_y.push_back(car_y);
+            }
+
+            // create some more waypoints for spline path creation
+            vector<double> wp0 = getXY(car_s + 30, 2+4*lane, map_waypoints_s, map_waypoints_x, map_waypoints_y);
+            vector<double> wp1 = getXY(car_s + 60, 2+4*lane, map_waypoints_s, map_waypoints_x, map_waypoints_y);
+            vector<double> wp2 = getXY(car_s + 90, 2+4*lane, map_waypoints_s, map_waypoints_x, map_waypoints_y);
+
+            // store newly created waypoints
+            pts_x.push_back(wp0[0]);
+            pts_x.push_back(wp1[0]);
+            pts_x.push_back(wp2[0]);
+
+            pts_y.push_back(wp0[1]);
+            pts_y.push_back(wp1[1]);
+            pts_y.push_back(wp2[1]);
+
+            // transform coordinates from inertial to car's frame of reference
+            for (int i = 0; i < pts_x.size(); i++)
+            {
+              // calculate deltas
+              double delta_x = pts_x[i] - ref_ego_x;
+              double delta_y = pts_x[i] - ref_ego_y;
+
+              // update point
+              pts_x[i] = delta_x*cos(0 - ref_ego_yaw) - delta_y*sin(0 - ref_ego_yaw);
+              pts_y[i] = delta_y*sin(0 - ref_ego_yaw) + delta_y*cos(0 - ref_ego_yaw);
+            }
+
+            // create a spline
+            tk::spline sp;
+
+            // fit spline to waypoints
+            sp.set_points(pts_x, pts_y);
+
+            // limit number of points to be used from last cycle to 5
+            int prev_path_size_lim = min(prev_path_size, 5);
+
+            // push points from previous cycles
+            for (int i = 0; i < prev_path_size_lim; i++)
+            {
+              next_x_vals.push_back(previous_path_x[i]);
+              next_y_vals.push_back(previous_path_y[i]);
+            }
+
+            // space spline points to travel at desired ego velocity
+            double spacing_x = 30;
+            double spacing_y = sp(spacing_x);
+            double spacing = sqrt(spacing_x*spacing_x + spacing_y*spacing_y);
+
+            double x_cumulative = 0; // cumulative x
+
+            for(int i = 1; i <= 50 - prev_path_size_lim; i++)
+            {
+              // calculate number of points to regulate speed
+              double N = (spacing_x/(0.02*v_ref/2.24));
+              
+              // point coordinates in car's frame
+              double x_car_frame = x_cumulative + spacing_x/N;
+              double y_car_frame = sp(x_car_frame);
+
+              x_cumulative = x_car_frame;
+
+              // point coordinates in inertial frame
+              double x_current = ref_ego_x + x_car_frame * cos(ref_ego_yaw) - y_car_frame*sin(ref_ego_yaw);
+              double y_current = ref_ego_y + x_car_frame * sin(ref_ego_yaw) + y_car_frame*cos(ref_ego_yaw);
+
+              // push point in to trajectory vectors
+              next_x_vals.push_back(x_current);
+              next_y_vals.push_back(y_current);
+            }
 
             // TODO: define a path made up of (x,y) points that the car will visit sequentially every .02 seconds
+            // // Experimental: Drive in current lane
+            // double d_inc = 0.44; // spacing between subsequent points, controls car speed
 
-            // Experimental: Drive in current lane
-            double d_inc = 0.44; // spacing between subsequent points, controls car speed
-
-            for(int i = 0; i < 50; i++)
-            {
-              double next_s = car_s + (i + 1) * d_inc;
-              double next_d = 6; // assuming car starts in middle lane and a lane width of 4m
-              vector<double> xy = getXY(next_s, next_d, map_waypoints_s, map_waypoints_x, map_waypoints_y);
-              next_x_vals.push_back(xy[0]);
-              next_y_vals.push_back(xy[1]);
-            }
-            // end drive in current lane
+            // for(int i = 0; i < 50; i++)
+            // {
+            //   double next_s = car_s + (i + 1) * d_inc;
+            //   double next_d = 6; // assuming car starts in middle lane and a lane width of 4m
+            //   vector<double> xy = getXY(next_s, next_d, map_waypoints_s, map_waypoints_x, map_waypoints_y);
+            //   next_x_vals.push_back(xy[0]);
+            //   next_y_vals.push_back(xy[1]);
+            // }
+            // // end drive in current lane
 
 
             // // Experimental: Drive at current car yaw i.e. in a straight line
@@ -298,7 +420,6 @@ int main() {
         } // end Manual driving
       } // end websocket message event
     }); // end onMessage
-
 
   // We don't need this since we're not using HTTP but if it's removed the
   // program doesn't compile :-(
