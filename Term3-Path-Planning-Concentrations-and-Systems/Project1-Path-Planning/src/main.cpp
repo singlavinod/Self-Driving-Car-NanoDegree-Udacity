@@ -253,18 +253,31 @@ int main() {
 
             // TODO: define a path made up of (x,y) points that the car will visit sequentially every .02 seconds
 
-            // Experimental: Drive at current car yaw i.e. in a straight line
+            // Experimental: Drive in current lane
             double d_inc = 0.44; // spacing between subsequent points, controls car speed
 
             for(int i = 0; i < 50; i++)
             {
-              double next_x = car_x + (i + 1) * d_inc * cos(deg2rad(car_yaw));
-              double next_y = car_y + (i + 1) * d_inc * sin(deg2rad(car_yaw));
-              next_x_vals.push_back(next_x);
-              next_y_vals.push_back(next_y);
+              double next_s = car_s + (i + 1) * d_inc;
+              double next_d = 6; // assuming car starts in middle lane and a lane width of 4m
+              vector<double> xy = getXY(next_s, next_d, map_waypoints_s, map_waypoints_x, map_waypoints_y);
+              next_x_vals.push_back(xy[0]);
+              next_y_vals.push_back(xy[1]);
             }
+            // end drive in current lane
 
-            // END
+
+            // // Experimental: Drive at current car yaw i.e. in a straight line
+            // double d_inc = 0.44; // spacing between subsequent points, controls car speed
+
+            // for(int i = 0; i < 50; i++)
+            // {
+            //   double next_x = car_x + (i + 1) * d_inc * cos(deg2rad(car_yaw));
+            //   double next_y = car_y + (i + 1) * d_inc * sin(deg2rad(car_yaw));
+            //   next_x_vals.push_back(next_x);
+            //   next_y_vals.push_back(next_y);
+            // }
+            // // end drive in straight line
 
             msgJson["next_x"] = next_x_vals;
             msgJson["next_y"] = next_y_vals;
