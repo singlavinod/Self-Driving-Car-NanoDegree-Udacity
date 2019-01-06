@@ -12,7 +12,7 @@
 
 using namespace std;
 
-// for convenience
+// for conveniences
 using json = nlohmann::json;
 
 // For converting back and forth between radians and degrees.
@@ -324,11 +324,11 @@ int main() {
             {
               // calculate deltas
               double delta_x = pts_x[i] - ref_ego_x;
-              double delta_y = pts_x[i] - ref_ego_y;
+              double delta_y = pts_y[i] - ref_ego_y;
 
               // update point
               pts_x[i] = delta_x*cos(0 - ref_ego_yaw) - delta_y*sin(0 - ref_ego_yaw);
-              pts_y[i] = delta_y*sin(0 - ref_ego_yaw) + delta_y*cos(0 - ref_ego_yaw);
+              pts_y[i] = delta_x*sin(0 - ref_ego_yaw) + delta_y*cos(0 - ref_ego_yaw);
             }
 
             // create a spline
@@ -338,7 +338,7 @@ int main() {
             sp.set_points(pts_x, pts_y);
 
             // limit number of points to be used from last cycle to 5
-            int prev_path_size_lim = min(prev_path_size, 5);
+            int prev_path_size_lim = min(prev_path_size, 50);
 
             // push points from previous cycles
             for (int i = 0; i < prev_path_size_lim; i++)
