@@ -167,6 +167,28 @@ vector<double> getXY(double s, double d, const vector<double> &maps_s, const vec
 }
 
 
+// Calculate target lane from frenet d value
+int calc_target_lane(float d)
+{
+  int target_lane = -1;
+
+  // Determine target vehicle's lane
+  if ( d > 0 && d < 4 )
+  {
+    target_lane = 0; // left most lane
+  }
+  else if ( d > 4 && d < 8 )
+  {
+    target_lane = 1; // middle lane
+  }
+  else if ( d > 8 && d < 12 )
+  {
+    target_lane = 2; // right most lane
+  }
+  return target_lane;
+}
+
+
 int main() {
   uWS::Hub h;
 
@@ -210,11 +232,14 @@ int main() {
   int lane = 1;
 
   // define target velocity in m/s
-  double v_ref = 49.5;
+  double v_ref = 0;
+
+  const double MAX_SPEED = 49.5; // Speed limit
+  const double MAX_ACC = 0.224; // Max acceleration
 
 
-  h.onMessage([&v_ref,&map_waypoints_x, &map_waypoints_y, &map_waypoints_s, &map_waypoints_dx,
-    &map_waypoints_dy, &lane](uWS::WebSocket<uWS::SERVER> ws, char *data, size_t length, uWS::OpCode opCode)
+  h.onMessage([&v_ref, &map_waypoints_x, &map_waypoints_y, &map_waypoints_s, &map_waypoints_dx,
+    &map_waypoints_dy, &lane, &MAX_ACC, &MAX_SPEED](uWS::WebSocket<uWS::SERVER> ws, char *data, size_t length, uWS::OpCode opCode)
     {
     // "42" at the start of the message means there's a websocket message event.
     // The 4 signifies a websocket message
@@ -253,6 +278,101 @@ int main() {
 
             // Fetch number of points in previous path
             int prev_path_size = previous_path_x.size();
+
+            // set current s to last path s if we travelled
+            if(prev_path_size > 0)
+            {
+              car_s = end_path_s;
+            }
+
+            /* Analyse positions of other cars on the road by iterating over sensor fusion object list */
+            bool target_front = false;
+            bool target_left = false;
+            bool target_right = false;
+
+            for ( int i = 0; i < sensor_fusion.size(); i++ )
+            {
+              float d = sensor_fusion[i][6];
+              // calculate target vehicle's lane
+              int target_lane = calc_target_lane(d);
+              if (target_lane < 0)
+              {
+                continue;
+              }
+              // Calculate car speed
+              double vx = sensor_fusion[i][3];
+              double vy = sensor_fusion[i][4];
+              double target_speed = sqrt(vx*vx + vy*vy);
+              double target_s = sensor_fusion[i][5];
+
+              // Determine target's s position at the end of current cycle
+              target_s += ((double)prev_path_size*0.02*target_speed);
+
+              // Determine if there are target's in front, left or right of ego vehicle
+              if ( target_lane == lane ) 
+              {
+                // target is in ego lane, check if collision is imminent
+                if (target_s > car_s && (target_s - car_s) < 30)
+                {
+                  target_front = true;
+                }
+              }
+              else if ( target_lane - lane == -1 )
+              {
+                // target is in left lane, check if it's unsafe to change lane left
+                if ((car_s - 30) < target_s && (car_s + 30) > target_s)
+                {
+                  target_left = true;
+                }
+              }
+              else if ( target_lane - lane == 1 )
+              {
+                // target is in right lane, check if it's unsafe to change lane right
+                if ((car_s - 30) < target_s && (car_s + 30) > target_s)
+                {
+                  target_right = true;
+                }
+              }
+            }
+
+            /* Behavior planning based on analysis of vehicles on the road */
+            double delta_v = 0;
+
+            if (target_front)
+            {
+              // there is a target in front of ego
+              if ( !target_left && lane > 0)  // check if it's safe to change lane left
+              {
+                lane--; // Change lane left.
+              }
+              else if ( !target_right && lane != 2) // check if it's safe to change lane right
+              {
+                lane++; // Change lane right.
+              }
+              else
+              {
+                delta_v -= MAX_ACC; // no lane change possible, decrease velocity to avoid collision
+              }
+            }
+
+            else 
+            {
+              // there is nothing in front of ego
+              if ( lane != 1 ) // check if we are in the middle lane
+               {
+                /* If we are in the left most lane, check if it's safe to lane change right or, 
+                 * if we are in the right most lane, check if it's safe to lane change left */
+                if ( (lane == 0 && !target_right) || (lane == 2 && !target_left) ) 
+                {
+                  lane = 1; // Back to center.
+                }
+              }
+              // If we are going below speed limit
+              if ( v_ref < MAX_SPEED ) 
+              {
+                delta_v += MAX_ACC; // floor it
+              }
+            }
 
             json msgJson;
 
@@ -337,11 +457,8 @@ int main() {
             // fit spline to waypoints
             sp.set_points(pts_x, pts_y);
 
-            // limit number of points to be used from last cycle to 5
-            int prev_path_size_lim = min(prev_path_size, 50);
-
             // push points from previous cycles
-            for (int i = 0; i < prev_path_size_lim; i++)
+            for (int i = 0; i < prev_path_size; i++)
             {
               next_x_vals.push_back(previous_path_x[i]);
               next_y_vals.push_back(previous_path_y[i]);
@@ -354,8 +471,14 @@ int main() {
 
             double x_cumulative = 0; // cumulative x
 
-            for(int i = 1; i <= 50 - prev_path_size_lim; i++)
+            for(int i = 1; i <= 50 - prev_path_size; i++)
             {
+              v_ref += delta_v;
+              if ( v_ref > MAX_SPEED ) {
+                v_ref = MAX_SPEED;
+              } else if ( v_ref < MAX_ACC ) {
+                v_ref = MAX_ACC;
+              } 
               // calculate number of points to regulate speed
               double N = (spacing_x/(0.02*v_ref/2.24));
               
@@ -373,33 +496,6 @@ int main() {
               next_x_vals.push_back(x_current);
               next_y_vals.push_back(y_current);
             }
-
-            // TODO: define a path made up of (x,y) points that the car will visit sequentially every .02 seconds
-            // // Experimental: Drive in current lane
-            // double d_inc = 0.44; // spacing between subsequent points, controls car speed
-
-            // for(int i = 0; i < 50; i++)
-            // {
-            //   double next_s = car_s + (i + 1) * d_inc;
-            //   double next_d = 6; // assuming car starts in middle lane and a lane width of 4m
-            //   vector<double> xy = getXY(next_s, next_d, map_waypoints_s, map_waypoints_x, map_waypoints_y);
-            //   next_x_vals.push_back(xy[0]);
-            //   next_y_vals.push_back(xy[1]);
-            // }
-            // // end drive in current lane
-
-
-            // // Experimental: Drive at current car yaw i.e. in a straight line
-            // double d_inc = 0.44; // spacing between subsequent points, controls car speed
-
-            // for(int i = 0; i < 50; i++)
-            // {
-            //   double next_x = car_x + (i + 1) * d_inc * cos(deg2rad(car_yaw));
-            //   double next_y = car_y + (i + 1) * d_inc * sin(deg2rad(car_yaw));
-            //   next_x_vals.push_back(next_x);
-            //   next_y_vals.push_back(next_y);
-            // }
-            // // end drive in straight line
 
             msgJson["next_x"] = next_x_vals;
             msgJson["next_y"] = next_y_vals;
