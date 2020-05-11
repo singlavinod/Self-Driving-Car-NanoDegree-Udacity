@@ -30,7 +30,6 @@ class TLDetector(object):
 
         sub1 = rospy.Subscriber('/current_pose', PoseStamped, self.pose_cb)
         sub2 = rospy.Subscriber('/base_waypoints', Lane, self.waypoints_cb)
-
         '''
         /vehicle/traffic_lights provides you with the location of the traffic light in 3D map space and
         helps you acquire an accurate ground truth data source for the traffic light
@@ -112,21 +111,25 @@ class TLDetector(object):
             int: index of the closest waypoint in self.waypoints
 
         """
-        closest_idx = self.waypoint_tree.query([x, y], 1)[1]
+        closest_idx = -1
+
+        if self.waypoint_tree is not None:
+            closest_idx = self.waypoint_tree.query([x, y], 1)[1]
+            
+            # check if closest point is ahead or behind of ego
+            closest_coord = self.waypoints_2d[closest_idx] 
+            prev_coord = self.waypoints_2d[closest_idx - 1]
+
+            # hyperplane eqn thru closest coords
+            cl_vect = np.array(closest_coord)
+            prev_vect = np.array(prev_coord)
+            pos_vect = np.array([x, y])
+
+            val = np.dot(cl_vect - prev_vect, pos_vect - cl_vect)
+
+            if val > 0:
+                closest_idx = closest_idx + 1 % len(self.waypoints_2d)
         
-        # check if closest point is ahead or behind of ego
-        closest_coord = self.waypoints_2d[closest_idx] 
-        prev_coord = self.waypoints_2d[closest_idx - 1]
-
-        # hyperplane eqn thru closest coords
-        cl_vect = np.array(closest_coord)
-        prev_vect = np.array(prev_coord)
-        pos_vect = np.array([x, y])
-
-        val = np.dot(cl_vect - prev_vect, pos_vect - cl_vect)
-
-        if val > 0:
-            closest_idx = closest_idx + 1 % len(self.waypoints_2d)
         return closest_idx
 
     def get_light_state(self, light):
@@ -165,7 +168,7 @@ class TLDetector(object):
         # List of positions that correspond to the line to stop in front of for a given intersection
         stop_line_positions = self.config['stop_line_positions']
 
-        if(self.pose):
+        if self.pose and self.waypoints:
             car_wp_idx = self.get_closest_waypoint(self.pose.pose.position.x, self.pose.pose.position.y)
 
             #TODO find the closest visible traffic light (if one exists)
