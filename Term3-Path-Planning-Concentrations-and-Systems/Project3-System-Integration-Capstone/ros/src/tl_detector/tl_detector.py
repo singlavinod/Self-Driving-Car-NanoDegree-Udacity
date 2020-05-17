@@ -142,16 +142,25 @@ class TLDetector(object):
             int: ID of traffic light color (specified in styx_msgs/TrafficLight)
 
         """
-        # if(not self.has_image):
-        #     self.prev_light_loc = None
-        #     return False
+        if self.light_classifier is None:
+            return TrafficLight.RED
 
-        # cv_image = self.bridge.imgmsg_to_cv2(self.camera_image, "bgr8")
+        if not self.has_image:
+            return TrafficLight.UNKNOWN
 
-        # #Get classification
-        # return self.light_classifier.get_classification(cv_image)
+        if hasattr(self.camera_image, 'encoding'):
+            if self.camera_image.encoding == '8UC3':
+                self.camera_image.encoding = "rgb8"
+        else:
+            self.camera_image.encoding = 'rgb8'
 
-        return light.state
+        img = self.bridge.imgmsg_to_cv2(self.camera_image, "rgb8")
+        light_state = self.light_classifier.get_class(img)
+
+        #print("predicted state: ", light_state)
+        #print("ground thruth: ", light.state)
+
+        return light_state #light.state
 
     def process_traffic_lights(self):
         """Finds closest visible traffic light, if one exists, and determines its
