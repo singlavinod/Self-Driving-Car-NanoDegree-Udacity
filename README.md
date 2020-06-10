@@ -12,6 +12,8 @@ The program is 9 months long and has three terms in total with individual terms 
 
 Each of terms has comprehensive projects to ensure percolation of presented concepts. The repository is organized according to individual terms and corresponding projects/labs are contained within the subdirectories.
 
+The course completion certificate can be found [here](https://confirm.udacity.com/GQPAQTM).
+
 ## List of Projects
 |Term 1 - Computer Vision and Deep Learning|Term 2 - Sensor Fusion, Localization and Control|Term 3 - Path Planning and System Integration|
 |:-------------:|:-------------:|:-------------:|
@@ -21,6 +23,5 @@ Each of terms has comprehensive projects to ensure percolation of presented conc
 |[Advanced Lane Lines](/Term1-Computer-Vision-and-Deep-Learning/Project4-Advanced-Lane_Lines)|[PID Controller](/Term2-Sensor-Fusion-Localization-and-Control/Project4-PID-Controller)|---|
 |[Vehicle Detection and Tracking](/Term1-Computer-Vision-and-Deep-Learning/Project5-Vehicle-Detection-and-Tracking)|[Model Predictive Controller](/Term2-Sensor-Fusion-Localization-and-Control/Project5-Model-Predictive-Controller)|---|
 
-
-*Current students please avoid plagiarizing the code as it results in violation of [Udacity's honor code](https://udacity.zendesk.com/hc/en-us/articles/210667103-What-is-the-Udacity-Honor-Code-).*
+*Disclaimer: Current students please avoid plagiarizing the code as it results in violation of [Udacity's honor code](https://udacity.zendesk.com/hc/en-us/articles/210667103-What-is-the-Udacity-Honor-Code-).*
 
