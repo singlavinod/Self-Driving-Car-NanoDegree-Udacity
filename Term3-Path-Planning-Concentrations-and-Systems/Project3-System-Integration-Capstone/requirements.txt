@@ -7,6 +7,6 @@ numpy==1.13.1
 Pillow>=6.2.2
 scipy==0.19.1
 keras==2.0.8
-tensorflow==2.4.0
+tensorflow==2.5.0
 ujson==1.35
 wsaccel==0.6.2
